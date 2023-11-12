@@ -9,12 +9,14 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     this.onChange,
     this.validator,
+    this.obscureText = false,
   });
 
   final String hintText;
   final IconData icon;
   final Function(String value)? onChange;
   final String? validator;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class CustomTextField extends StatelessWidget {
       onChanged: (value) {
         onChange!(value);
       },
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: Icon(icon),

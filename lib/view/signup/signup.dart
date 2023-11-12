@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:todo/core/api.dart';
+import 'package:todo/controller/signup/signup.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
 import 'package:todo/view/widgets/textform.dart';
-import 'package:http/http.dart' as http;
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -93,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       });
 
                       if (_email.isNotEmpty && _password.isNotEmpty) {
-                        registerUser();
+                        registerUser(_email, _password);
                       }
                     },
                   ),
@@ -118,20 +115,5 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> registerUser() async {
-    var data = {
-      "email": _email,
-      "password": _password,
-    };
-
-    var res = await http.post(
-      Uri.parse('$baseUrl/register'),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(data),
-    );
-    final response = jsonDecode(res.body);
-    print(response['email']);
   }
 }
