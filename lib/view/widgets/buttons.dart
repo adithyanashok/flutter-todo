@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/view/widgets/loader.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -9,6 +10,7 @@ class CustomButton extends StatelessWidget {
     this.width = 360,
     required this.text,
     this.onTap,
+    this.loading = false,
   });
 
   final Color color;
@@ -17,6 +19,7 @@ class CustomButton extends StatelessWidget {
   final double width;
   final String text;
   final Function()? onTap;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +41,14 @@ class CustomButton extends StatelessWidget {
           ),
           shadowColor: const MaterialStatePropertyAll(Colors.white),
           elevation: const MaterialStatePropertyAll(10)),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: textColor,
-        ),
-      ),
+      child: loading
+          ? const CustomMiniLoader()
+          : Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+              ),
+            ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo/controller/signup/signup.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/bloc/auth/auth_bloc.dart';
+import 'package:todo/controller/auth/auth.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
@@ -13,8 +15,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  // Key for the form to manage its state
   final _formKey = GlobalKey<FormState>();
 
+  // Variables to store user input
   String _email = '';
   String _password = '';
   bool validator = false;
@@ -56,6 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         _email = value;
                       });
                     },
+                    // Validate email only if the validator is true
                     validator:
                         validator && (_email.isEmpty || !_email.contains('@'))
                             ? 'Enter a valid email'
@@ -73,6 +78,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         _password = value;
                       });
                     },
+                    obscureText: true,
+                    // Validate password only if the validator is true
                     validator: validator && _password.isEmpty
                         ? 'Enter a password'
                         : null,
@@ -80,18 +87,30 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50, bottom: 10),
-                  child: CustomButton(
-                    text: "Signup",
-                    height: 60,
-                    color: AppColor.blueColor,
-                    onTap: () {
-                      setState(() {
-                        validator = true;
-                      });
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return CustomButton(
+                        text: "Signup",
+                        height: 60,
+                        color: AppColor.blueColor,
+                        loading: state.isLoading,
+                        onTap: () {
+                          // Set validator to true to enable validation
+                          setState(() {
+                            validator = true;
+                          });
 
-                      if (_email.isNotEmpty && _password.isNotEmpty) {
-                        registerUser(_email, _password);
-                      }
+                          // If email and password are not empty, register the user
+                          if (_email.isNotEmpty && _password.isNotEmpty) {
+                            BlocProvider.of<AuthBloc>(context)
+                                .add(AuthEvent.signup(
+                              email: _email,
+                              password: _password,
+                              context: context,
+                            ));
+                          }
+                        },
+                      );
                     },
                   ),
                 ),

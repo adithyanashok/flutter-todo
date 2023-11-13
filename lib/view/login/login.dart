@@ -1,11 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/bloc/auth/auth_bloc.dart';
 import 'package:todo/core/api.dart';
 import 'package:todo/util/colors/colors.dart';
+import 'package:todo/util/snackbar/snackbar.dart';
 import 'package:todo/view/dashboard/dashboard.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
@@ -23,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late SharedPreferences prefs;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initSharedPreference();
   }
@@ -95,17 +96,27 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 50, bottom: 10),
-                child: CustomButton(
-                  text: "Login",
-                  height: 50.h,
-                  color: AppColor.blueColor,
-                  onTap: () {
-                    setState(() {
-                      validator = true;
-                    });
-                    if (_email.isNotEmpty && _password.isNotEmpty) {
-                      loginUser();
-                    }
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    return CustomButton(
+                      text: "Login",
+                      height: 50.h,
+                      color: AppColor.blueColor,
+                      loading: state.isLoading,
+                      onTap: () {
+                        setState(() {
+                          validator = true;
+                        });
+                        if (_email.isNotEmpty && _password.isNotEmpty) {
+                          BlocProvider.of<AuthBloc>(context)
+                              .add(AuthEvent.login(
+                            email: _email,
+                            password: _password,
+                            context: context,
+                          ));
+                        }
+                      },
+                    );
                   },
                 ),
               ),
@@ -128,26 +139,29 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> loginUser() async {
-    var data = {
-      "email": _email,
-      "password": _password,
-    };
+  // Future<void> loginUser() async {
+  //   var data = {
+  //     "email": _email,
+  //     "password": _password,
+  //   };
 
-    var res = await http.post(
-      Uri.parse('$baseUrl/login'),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(data),
-    );
-    final response = jsonDecode(res.body);
-
-    if (response['status']) {
-      String token = response['token'];
-      prefs.setString('token', token);
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Dashboard(token: token),
-      ));
-    }
-    print(response);
-  }
+  //   var res = await http.post(
+  //     Uri.parse('$baseUrl/login'),
+  //     headers: {"Content-Type": "application/json"},
+  //     body: jsonEncode(data),
+  //   );
+  //   final response = jsonDecode(res.body);
+  //   if (!response['status']) {
+  //     return snackBar(context: context, msg: response['message']);
+  //   }
+  //   if (response['status']) {
+  //     String token = response['token'];
+  //     prefs.setString('token', token);
+  //     Navigator.of(context).pushAndRemoveUntil(
+  //         MaterialPageRoute(
+  //           builder: (context) => Dashboard(token: token),
+  //         ),
+  //         (route) => false);
+  //   }
+  // }
 }

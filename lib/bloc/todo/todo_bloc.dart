@@ -14,5 +14,27 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       final todos = await TodoController.getTodo(event.userId);
       emit(state.copyWith(isLoading: false, todos: todos));
     });
+
+    on<_DeleteTodos>((event, emit) async {
+      emit(state.copyWith(isLoading: true));
+      await TodoController.doneTodo(event.title, event.desc, event.userId);
+
+      await TodoController.deleteTodo(event.id);
+      emit(state.copyWith(isLoading: false));
+
+      final doneTodos = await TodoController.getDoneTodo(event.userId);
+
+      final todos = await TodoController.getTodo(event.userId);
+
+      emit(
+          state.copyWith(isLoading: false, todos: todos, doneTodos: doneTodos));
+    });
+
+    on<_GetDoneTodos>((event, emit) async {
+      emit(state.copyWith(isLoading: true));
+      final todos = await TodoController.getDoneTodo(event.userId);
+
+      emit(state.copyWith(isLoading: false, doneTodos: todos));
+    });
   }
 }
