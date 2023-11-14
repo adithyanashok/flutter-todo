@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/util/colors/colors.dart';
+import 'package:todo/view/widgets/empty_widget.dart';
 import 'package:todo/view/widgets/loader.dart';
 import 'package:todo/view/widgets/text.dart';
 
@@ -35,21 +36,10 @@ class TasksWidget extends StatelessWidget {
                       child: CustomMiniLoader(),
                     )
                   : state.todos.isEmpty
-                      ? const Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomHeadingText(
-                                text: "No Tasks!",
-                                color: Color.fromARGB(255, 70, 88, 187),
-                              ),
-                              CustomSmallText(
-                                text: "Press the + button to add a task!",
-                                color: AppColor.whiteSecondary,
-                              ),
-                            ],
-                          ),
+                      ? const EmptyMessage(
+                          title: "No Tasks!",
+                          desc: "Press the + button to add a task!",
+                          fontSize: 45,
                         )
                       : ListView.separated(
                           itemBuilder: (context, index) {
@@ -66,6 +56,7 @@ class TasksWidget extends StatelessWidget {
                                     desc: todo.title,
                                     id: todo.id,
                                     userId: id,
+                                    context: context,
                                   ));
                                 },
                                 child: Card(

@@ -21,18 +21,25 @@ mixin _$EventsEvent {
     required TResult Function(EventModel eventModel, BuildContext context)
         addEvent,
     required TResult Function(String userId) getEvent,
+    required TResult Function(String eventId, String userId) deleteEvent,
+    required TResult Function(EventModel eventModel, BuildContext context)
+        editEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult? Function(String userId)? getEvent,
+    TResult? Function(String eventId, String userId)? deleteEvent,
+    TResult? Function(EventModel eventModel, BuildContext context)? editEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult Function(String userId)? getEvent,
+    TResult Function(String eventId, String userId)? deleteEvent,
+    TResult Function(EventModel eventModel, BuildContext context)? editEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +47,24 @@ mixin _$EventsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_AddEvent value) addEvent,
     required TResult Function(_GetEvent value) getEvent,
+    required TResult Function(_DeleteEvent value) deleteEvent,
+    required TResult Function(_EditEvent value) editEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddEvent value)? addEvent,
     TResult? Function(_GetEvent value)? getEvent,
+    TResult? Function(_DeleteEvent value)? deleteEvent,
+    TResult? Function(_EditEvent value)? editEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddEvent value)? addEvent,
     TResult Function(_GetEvent value)? getEvent,
+    TResult Function(_DeleteEvent value)? deleteEvent,
+    TResult Function(_EditEvent value)? editEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,6 +174,9 @@ class _$AddEventImpl implements _AddEvent {
     required TResult Function(EventModel eventModel, BuildContext context)
         addEvent,
     required TResult Function(String userId) getEvent,
+    required TResult Function(String eventId, String userId) deleteEvent,
+    required TResult Function(EventModel eventModel, BuildContext context)
+        editEvent,
   }) {
     return addEvent(eventModel, context);
   }
@@ -170,6 +186,8 @@ class _$AddEventImpl implements _AddEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult? Function(String userId)? getEvent,
+    TResult? Function(String eventId, String userId)? deleteEvent,
+    TResult? Function(EventModel eventModel, BuildContext context)? editEvent,
   }) {
     return addEvent?.call(eventModel, context);
   }
@@ -179,6 +197,8 @@ class _$AddEventImpl implements _AddEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult Function(String userId)? getEvent,
+    TResult Function(String eventId, String userId)? deleteEvent,
+    TResult Function(EventModel eventModel, BuildContext context)? editEvent,
     required TResult orElse(),
   }) {
     if (addEvent != null) {
@@ -192,6 +212,8 @@ class _$AddEventImpl implements _AddEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_AddEvent value) addEvent,
     required TResult Function(_GetEvent value) getEvent,
+    required TResult Function(_DeleteEvent value) deleteEvent,
+    required TResult Function(_EditEvent value) editEvent,
   }) {
     return addEvent(this);
   }
@@ -201,6 +223,8 @@ class _$AddEventImpl implements _AddEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddEvent value)? addEvent,
     TResult? Function(_GetEvent value)? getEvent,
+    TResult? Function(_DeleteEvent value)? deleteEvent,
+    TResult? Function(_EditEvent value)? editEvent,
   }) {
     return addEvent?.call(this);
   }
@@ -210,6 +234,8 @@ class _$AddEventImpl implements _AddEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddEvent value)? addEvent,
     TResult Function(_GetEvent value)? getEvent,
+    TResult Function(_DeleteEvent value)? deleteEvent,
+    TResult Function(_EditEvent value)? editEvent,
     required TResult orElse(),
   }) {
     if (addEvent != null) {
@@ -298,6 +324,9 @@ class _$GetEventImpl implements _GetEvent {
     required TResult Function(EventModel eventModel, BuildContext context)
         addEvent,
     required TResult Function(String userId) getEvent,
+    required TResult Function(String eventId, String userId) deleteEvent,
+    required TResult Function(EventModel eventModel, BuildContext context)
+        editEvent,
   }) {
     return getEvent(userId);
   }
@@ -307,6 +336,8 @@ class _$GetEventImpl implements _GetEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult? Function(String userId)? getEvent,
+    TResult? Function(String eventId, String userId)? deleteEvent,
+    TResult? Function(EventModel eventModel, BuildContext context)? editEvent,
   }) {
     return getEvent?.call(userId);
   }
@@ -316,6 +347,8 @@ class _$GetEventImpl implements _GetEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EventModel eventModel, BuildContext context)? addEvent,
     TResult Function(String userId)? getEvent,
+    TResult Function(String eventId, String userId)? deleteEvent,
+    TResult Function(EventModel eventModel, BuildContext context)? editEvent,
     required TResult orElse(),
   }) {
     if (getEvent != null) {
@@ -329,6 +362,8 @@ class _$GetEventImpl implements _GetEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_AddEvent value) addEvent,
     required TResult Function(_GetEvent value) getEvent,
+    required TResult Function(_DeleteEvent value) deleteEvent,
+    required TResult Function(_EditEvent value) editEvent,
   }) {
     return getEvent(this);
   }
@@ -338,6 +373,8 @@ class _$GetEventImpl implements _GetEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddEvent value)? addEvent,
     TResult? Function(_GetEvent value)? getEvent,
+    TResult? Function(_DeleteEvent value)? deleteEvent,
+    TResult? Function(_EditEvent value)? editEvent,
   }) {
     return getEvent?.call(this);
   }
@@ -347,6 +384,8 @@ class _$GetEventImpl implements _GetEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddEvent value)? addEvent,
     TResult Function(_GetEvent value)? getEvent,
+    TResult Function(_DeleteEvent value)? deleteEvent,
+    TResult Function(_EditEvent value)? editEvent,
     required TResult orElse(),
   }) {
     if (getEvent != null) {
@@ -362,6 +401,333 @@ abstract class _GetEvent implements EventsEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$GetEventImplCopyWith<_$GetEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteEventImplCopyWith<$Res> {
+  factory _$$DeleteEventImplCopyWith(
+          _$DeleteEventImpl value, $Res Function(_$DeleteEventImpl) then) =
+      __$$DeleteEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String eventId, String userId});
+}
+
+/// @nodoc
+class __$$DeleteEventImplCopyWithImpl<$Res>
+    extends _$EventsEventCopyWithImpl<$Res, _$DeleteEventImpl>
+    implements _$$DeleteEventImplCopyWith<$Res> {
+  __$$DeleteEventImplCopyWithImpl(
+      _$DeleteEventImpl _value, $Res Function(_$DeleteEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventId = null,
+    Object? userId = null,
+  }) {
+    return _then(_$DeleteEventImpl(
+      eventId: null == eventId
+          ? _value.eventId
+          : eventId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteEventImpl implements _DeleteEvent {
+  const _$DeleteEventImpl({required this.eventId, required this.userId});
+
+  @override
+  final String eventId;
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'EventsEvent.deleteEvent(eventId: $eventId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteEventImpl &&
+            (identical(other.eventId, eventId) || other.eventId == eventId) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, eventId, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
+      __$$DeleteEventImplCopyWithImpl<_$DeleteEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EventModel eventModel, BuildContext context)
+        addEvent,
+    required TResult Function(String userId) getEvent,
+    required TResult Function(String eventId, String userId) deleteEvent,
+    required TResult Function(EventModel eventModel, BuildContext context)
+        editEvent,
+  }) {
+    return deleteEvent(eventId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EventModel eventModel, BuildContext context)? addEvent,
+    TResult? Function(String userId)? getEvent,
+    TResult? Function(String eventId, String userId)? deleteEvent,
+    TResult? Function(EventModel eventModel, BuildContext context)? editEvent,
+  }) {
+    return deleteEvent?.call(eventId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EventModel eventModel, BuildContext context)? addEvent,
+    TResult Function(String userId)? getEvent,
+    TResult Function(String eventId, String userId)? deleteEvent,
+    TResult Function(EventModel eventModel, BuildContext context)? editEvent,
+    required TResult orElse(),
+  }) {
+    if (deleteEvent != null) {
+      return deleteEvent(eventId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddEvent value) addEvent,
+    required TResult Function(_GetEvent value) getEvent,
+    required TResult Function(_DeleteEvent value) deleteEvent,
+    required TResult Function(_EditEvent value) editEvent,
+  }) {
+    return deleteEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddEvent value)? addEvent,
+    TResult? Function(_GetEvent value)? getEvent,
+    TResult? Function(_DeleteEvent value)? deleteEvent,
+    TResult? Function(_EditEvent value)? editEvent,
+  }) {
+    return deleteEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddEvent value)? addEvent,
+    TResult Function(_GetEvent value)? getEvent,
+    TResult Function(_DeleteEvent value)? deleteEvent,
+    TResult Function(_EditEvent value)? editEvent,
+    required TResult orElse(),
+  }) {
+    if (deleteEvent != null) {
+      return deleteEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteEvent implements EventsEvent {
+  const factory _DeleteEvent(
+      {required final String eventId,
+      required final String userId}) = _$DeleteEventImpl;
+
+  String get eventId;
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditEventImplCopyWith<$Res> {
+  factory _$$EditEventImplCopyWith(
+          _$EditEventImpl value, $Res Function(_$EditEventImpl) then) =
+      __$$EditEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({EventModel eventModel, BuildContext context});
+
+  $EventModelCopyWith<$Res> get eventModel;
+}
+
+/// @nodoc
+class __$$EditEventImplCopyWithImpl<$Res>
+    extends _$EventsEventCopyWithImpl<$Res, _$EditEventImpl>
+    implements _$$EditEventImplCopyWith<$Res> {
+  __$$EditEventImplCopyWithImpl(
+      _$EditEventImpl _value, $Res Function(_$EditEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? eventModel = null,
+    Object? context = null,
+  }) {
+    return _then(_$EditEventImpl(
+      eventModel: null == eventModel
+          ? _value.eventModel
+          : eventModel // ignore: cast_nullable_to_non_nullable
+              as EventModel,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EventModelCopyWith<$Res> get eventModel {
+    return $EventModelCopyWith<$Res>(_value.eventModel, (value) {
+      return _then(_value.copyWith(eventModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EditEventImpl implements _EditEvent {
+  const _$EditEventImpl({required this.eventModel, required this.context});
+
+  @override
+  final EventModel eventModel;
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'EventsEvent.editEvent(eventModel: $eventModel, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditEventImpl &&
+            (identical(other.eventModel, eventModel) ||
+                other.eventModel == eventModel) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, eventModel, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditEventImplCopyWith<_$EditEventImpl> get copyWith =>
+      __$$EditEventImplCopyWithImpl<_$EditEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EventModel eventModel, BuildContext context)
+        addEvent,
+    required TResult Function(String userId) getEvent,
+    required TResult Function(String eventId, String userId) deleteEvent,
+    required TResult Function(EventModel eventModel, BuildContext context)
+        editEvent,
+  }) {
+    return editEvent(eventModel, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EventModel eventModel, BuildContext context)? addEvent,
+    TResult? Function(String userId)? getEvent,
+    TResult? Function(String eventId, String userId)? deleteEvent,
+    TResult? Function(EventModel eventModel, BuildContext context)? editEvent,
+  }) {
+    return editEvent?.call(eventModel, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EventModel eventModel, BuildContext context)? addEvent,
+    TResult Function(String userId)? getEvent,
+    TResult Function(String eventId, String userId)? deleteEvent,
+    TResult Function(EventModel eventModel, BuildContext context)? editEvent,
+    required TResult orElse(),
+  }) {
+    if (editEvent != null) {
+      return editEvent(eventModel, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddEvent value) addEvent,
+    required TResult Function(_GetEvent value) getEvent,
+    required TResult Function(_DeleteEvent value) deleteEvent,
+    required TResult Function(_EditEvent value) editEvent,
+  }) {
+    return editEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddEvent value)? addEvent,
+    TResult? Function(_GetEvent value)? getEvent,
+    TResult? Function(_DeleteEvent value)? deleteEvent,
+    TResult? Function(_EditEvent value)? editEvent,
+  }) {
+    return editEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddEvent value)? addEvent,
+    TResult Function(_GetEvent value)? getEvent,
+    TResult Function(_DeleteEvent value)? deleteEvent,
+    TResult Function(_EditEvent value)? editEvent,
+    required TResult orElse(),
+  }) {
+    if (editEvent != null) {
+      return editEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditEvent implements EventsEvent {
+  const factory _EditEvent(
+      {required final EventModel eventModel,
+      required final BuildContext context}) = _$EditEventImpl;
+
+  EventModel get eventModel;
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$EditEventImplCopyWith<_$EditEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

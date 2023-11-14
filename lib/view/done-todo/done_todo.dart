@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/util/colors/colors.dart';
+import 'package:todo/view/widgets/empty_widget.dart';
 import 'package:todo/view/widgets/loader.dart';
 import 'package:todo/view/widgets/text.dart';
 
@@ -39,22 +40,10 @@ class DoneTodo extends StatelessWidget {
                       child: CustomMiniLoader(),
                     )
                   : state.doneTodos.isEmpty
-                      ? Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomHeadingText(
-                                text: "No Completed Tasks!",
-                                color: const Color.fromARGB(255, 70, 88, 187),
-                                fontSize: 25.sp,
-                              ),
-                              const CustomSmallText(
-                                text: "Press the + button to add a task!",
-                                color: AppColor.whiteSecondary,
-                              ),
-                            ],
-                          ),
+                      ? const EmptyMessage(
+                          title: "No Completed Tasks!",
+                          desc: "Press the + button to add a task!",
+                          fontSize: 25,
                         )
                       : ListView.separated(
                           itemBuilder: (context, index) {

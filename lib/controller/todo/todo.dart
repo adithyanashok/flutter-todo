@@ -21,15 +21,17 @@ class TodoController {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(data),
     );
-    final response = jsonDecode(res.body);
-    if (response['status']) {
-      BlocProvider.of<TodoBloc>(context)
-          .add(TodoEvent.getTodos(userId: userId));
+    if (res.statusCode == 200 || res.statusCode == 201) {
+      final response = jsonDecode(res.body);
+      if (response['status']) {
+        BlocProvider.of<TodoBloc>(context)
+            .add(TodoEvent.getTodos(userId: userId));
 
-      Navigator.of(context).pop();
-    }
-    if (!response['status']) {
-      return snackBar(context: context, msg: response);
+        Navigator.of(context).pop();
+      }
+      if (!response['status']) {
+        return snackBar(context: context, msg: response);
+      }
     }
   }
 
@@ -41,24 +43,28 @@ class TodoController {
       headers: {"Content-Type": "application/json"},
     );
 
-    // Decode the response body
-    final response = jsonDecode(res.body);
+    if (res.statusCode == 200 || res.statusCode == 201) {
+      // Decode the response body
+      final response = jsonDecode(res.body);
 
-    // Create a list to store Todo objects
-    List<Todo> todoList = [];
+      // Create a list to store Todo objects
+      List<Todo> todoList = [];
 
-    // Loop through the response and convert each item to a Todo object
-    for (var res in response) {
-      final todo = Todo.fromJson(res);
-      todoList.add(todo);
+      // Loop through the response and convert each item to a Todo object
+      for (var res in response) {
+        final todo = Todo.fromJson(res);
+        todoList.add(todo);
+      }
+
+      // Sort the todoList by createdAt date in descending order
+      todoList.sort((a, b) =>
+          (b.createdAt ?? DateTime(0)).compareTo(a.createdAt ?? DateTime(0)));
+
+      // Return the sorted todoList
+      return todoList;
+    } else {
+      return [];
     }
-
-    // Sort the todoList by createdAt date in descending order
-    todoList.sort((a, b) =>
-        (b.createdAt ?? DateTime(0)).compareTo(a.createdAt ?? DateTime(0)));
-
-    // Return the sorted todoList
-    return todoList;
   }
 
   static Future<List<Todo>> getDoneTodo(userId) async {
@@ -68,20 +74,24 @@ class TodoController {
       headers: {"Content-Type": "application/json"},
     );
 
-    // Decode the response body
-    final response = jsonDecode(res.body);
-    // Create a list to store Todo objects
-    List<Todo> todoList = [];
+    if (res.statusCode == 201 || res.statusCode == 200) {
+      // Decode the response body
+      final response = jsonDecode(res.body);
+      // Create a list to store Todo objects
+      List<Todo> todoList = [];
 
-    // Loop through the response and convert each item to a Todo object
-    for (var res in response) {
-      final todo = Todo.fromJson(res);
-      todoList.add(todo);
+      // Loop through the response and convert each item to a Todo object
+      for (var res in response) {
+        final todo = Todo.fromJson(res);
+        todoList.add(todo);
+      }
+      todoList.sort((a, b) =>
+          (b.createdAt ?? DateTime(0)).compareTo(a.createdAt ?? DateTime(0)));
+      // Return the sorted todoList
+      return todoList;
+    } else {
+      return [];
     }
-    todoList.sort((a, b) =>
-        (b.createdAt ?? DateTime(0)).compareTo(a.createdAt ?? DateTime(0)));
-    // Return the sorted todoList
-    return todoList;
   }
 
   // Function to delete a todo by its ID
@@ -93,7 +103,7 @@ class TodoController {
     );
   }
 
-  static Future<void> doneTodo(title, desc, id) async {
+  static Future<void> doneTodo(title, desc, id, BuildContext context) async {
     var data = {
       "title": title,
       "desc": desc,
@@ -106,6 +116,6 @@ class TodoController {
       body: jsonEncode(data),
     );
     final response = jsonDecode(res.body);
-    print(response);
+    if (response['status']) {}
   }
 }

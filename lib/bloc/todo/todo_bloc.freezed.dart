@@ -21,8 +21,8 @@ mixin _$TodoEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic userId) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(
-            dynamic title, dynamic desc, dynamic id, dynamic userId)
+    required TResult Function(dynamic title, dynamic desc, dynamic id,
+            dynamic userId, dynamic context)
         deleteTodos,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,8 @@ mixin _$TodoEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic userId)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ mixin _$TodoEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic userId)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) =>
@@ -169,8 +171,8 @@ class _$GetTodosImpl implements _GetTodos {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic userId) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(
-            dynamic title, dynamic desc, dynamic id, dynamic userId)
+    required TResult Function(dynamic title, dynamic desc, dynamic id,
+            dynamic userId, dynamic context)
         deleteTodos,
   }) {
     return getTodos(userId);
@@ -181,7 +183,8 @@ class _$GetTodosImpl implements _GetTodos {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic userId)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
   }) {
     return getTodos?.call(userId);
@@ -192,7 +195,8 @@ class _$GetTodosImpl implements _GetTodos {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic userId)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
@@ -314,8 +318,8 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic userId) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(
-            dynamic title, dynamic desc, dynamic id, dynamic userId)
+    required TResult Function(dynamic title, dynamic desc, dynamic id,
+            dynamic userId, dynamic context)
         deleteTodos,
   }) {
     return getDoneTodos(userId);
@@ -326,7 +330,8 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic userId)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
   }) {
     return getDoneTodos?.call(userId);
@@ -337,7 +342,8 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic userId)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
@@ -401,7 +407,12 @@ abstract class _$$DeleteTodosImplCopyWith<$Res>
       __$$DeleteTodosImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic title, dynamic desc, dynamic id, dynamic userId});
+  $Res call(
+      {dynamic title,
+      dynamic desc,
+      dynamic id,
+      dynamic userId,
+      dynamic context});
 }
 
 /// @nodoc
@@ -419,12 +430,14 @@ class __$$DeleteTodosImplCopyWithImpl<$Res>
     Object? desc = freezed,
     Object? id = freezed,
     Object? userId = freezed,
+    Object? context = freezed,
   }) {
     return _then(_$DeleteTodosImpl(
       title: freezed == title ? _value.title! : title,
       desc: freezed == desc ? _value.desc! : desc,
       id: freezed == id ? _value.id! : id,
       userId: freezed == userId ? _value.userId! : userId,
+      context: freezed == context ? _value.context! : context,
     ));
   }
 }
@@ -432,7 +445,8 @@ class __$$DeleteTodosImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteTodosImpl implements _DeleteTodos {
-  const _$DeleteTodosImpl({this.title, this.desc, this.id, this.userId});
+  const _$DeleteTodosImpl(
+      {this.title, this.desc, this.id, this.userId, this.context});
 
   @override
   final dynamic title;
@@ -442,10 +456,12 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   final dynamic id;
   @override
   final dynamic userId;
+  @override
+  final dynamic context;
 
   @override
   String toString() {
-    return 'TodoEvent.deleteTodos(title: $title, desc: $desc, id: $id, userId: $userId)';
+    return 'TodoEvent.deleteTodos(title: $title, desc: $desc, id: $id, userId: $userId, context: $context)';
   }
 
   @override
@@ -456,7 +472,8 @@ class _$DeleteTodosImpl implements _DeleteTodos {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.desc, desc) &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.userId, userId));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.context, context));
   }
 
   @override
@@ -465,7 +482,8 @@ class _$DeleteTodosImpl implements _DeleteTodos {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(desc),
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(userId));
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(context));
 
   @JsonKey(ignore: true)
   @override
@@ -478,11 +496,11 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic userId) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(
-            dynamic title, dynamic desc, dynamic id, dynamic userId)
+    required TResult Function(dynamic title, dynamic desc, dynamic id,
+            dynamic userId, dynamic context)
         deleteTodos,
   }) {
-    return deleteTodos(title, desc, id, userId);
+    return deleteTodos(title, desc, id, userId, context);
   }
 
   @override
@@ -490,10 +508,11 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic userId)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
   }) {
-    return deleteTodos?.call(title, desc, id, userId);
+    return deleteTodos?.call(title, desc, id, userId, context);
   }
 
   @override
@@ -501,12 +520,13 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic userId)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId)?
+    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
+            dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
     if (deleteTodos != null) {
-      return deleteTodos(title, desc, id, userId);
+      return deleteTodos(title, desc, id, userId, context);
     }
     return orElse();
   }
@@ -551,13 +571,15 @@ abstract class _DeleteTodos implements TodoEvent {
       {final dynamic title,
       final dynamic desc,
       final dynamic id,
-      final dynamic userId}) = _$DeleteTodosImpl;
+      final dynamic userId,
+      final dynamic context}) = _$DeleteTodosImpl;
 
   dynamic get title;
   dynamic get desc;
   dynamic get id;
   @override
   dynamic get userId;
+  dynamic get context;
   @override
   @JsonKey(ignore: true)
   _$$DeleteTodosImplCopyWith<_$DeleteTodosImpl> get copyWith =>

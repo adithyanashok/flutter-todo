@@ -13,7 +13,7 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
     on<_AddEvent>((event, emit) async {
       emit(state.copyWith(loading: true));
 
-      await EventController.addToTodo(event.eventModel, event.context);
+      await EventController.addEvent(event.eventModel, event.context);
       emit(state.copyWith(loading: false));
     });
 
@@ -21,6 +21,24 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
       emit(state.copyWith(loading: true));
 
       final events = await EventController.getEvents(event.userId);
+      emit(state.copyWith(loading: false, events: events));
+    });
+
+    on<_DeleteEvent>((event, emit) async {
+      emit(state.copyWith(loading: true));
+      await EventController.deleteEvent(event.eventId);
+
+      final events = await EventController.getEvents(event.userId);
+
+      emit(state.copyWith(loading: false, events: events));
+    });
+
+    on<_EditEvent>((event, emit) async {
+      emit(state.copyWith(loading: true));
+      await EventController.editEvent(event.eventModel, event.context);
+
+      final events = await EventController.getEvents(event.eventModel.userId);
+
       emit(state.copyWith(loading: false, events: events));
     });
   }

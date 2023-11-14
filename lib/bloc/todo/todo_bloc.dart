@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:todo/controller/todo/todo.dart';
 import 'package:todo/model/todo/todo.dart';
+import 'package:todo/util/snackbar/snackbar.dart';
 
 part 'todo_event.dart';
 part 'todo_state.dart';
@@ -17,7 +19,8 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
     on<_DeleteTodos>((event, emit) async {
       emit(state.copyWith(isLoading: true));
-      await TodoController.doneTodo(event.title, event.desc, event.userId);
+      await TodoController.doneTodo(
+          event.title, event.desc, event.userId, event.context);
 
       await TodoController.deleteTodo(event.id);
       emit(state.copyWith(isLoading: false));

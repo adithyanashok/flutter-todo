@@ -102,8 +102,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   // TabBar for switching between Tasks and Done
                   TabBar(
                     automaticIndicatorColorAdjustment: false,
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
                     indicatorSize: TabBarIndicatorSize.label,
+                    indicatorPadding: const EdgeInsets.all(5),
                     indicatorColor: AppColor.whiteColor,
                     indicator: BoxDecoration(
                       shape: BoxShape.rectangle,
@@ -114,7 +115,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       // Tab for Tasks
                       Container(
                         width: .5.sw,
-                        height: 40.h,
+                        height: 45.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -128,7 +129,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       // Tab for Done
                       Container(
                         width: .5.sw,
-                        height: 40.h,
+                        height: 45.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                         ),
