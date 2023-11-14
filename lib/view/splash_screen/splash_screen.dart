@@ -3,6 +3,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/dashboard/dashboard.dart';
+import 'package:todo/view/main_screen/main_screen.dart';
 import 'package:todo/view/widgets/text.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class SplashScreen extends StatelessWidget {
           } else {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => Dashboard(token: token),
+                builder: (context) => MainScreen(token: token),
               ),
               (route) => false,
             );
