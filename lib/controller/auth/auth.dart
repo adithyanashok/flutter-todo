@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/core/api.dart';
 import 'package:todo/util/snackbar/snackbar.dart';
-import 'package:todo/view/dashboard/dashboard.dart';
+import 'package:todo/view/main_screen/main_screen.dart';
 
 // Function to register a user
 Future<void> registerUser(email, password, context) async {
@@ -39,7 +39,7 @@ Future<void> registerUser(email, password, context) async {
     // Navigate to the Dashboard and remove the registration screen from the stack
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => Dashboard(token: token),
+          builder: (context) => MainScreen(token: token),
         ),
         (route) => false);
   }
@@ -83,7 +83,7 @@ Future<void> loginUser(email, password, context) async {
     // Navigate to the Dashboard screen and remove the login screen from the stack
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => Dashboard(token: token),
+          builder: (context) => MainScreen(token: token),
         ),
         (route) => false);
   }

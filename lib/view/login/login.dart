@@ -1,18 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/bloc/auth/auth_bloc.dart';
-import 'package:todo/core/api.dart';
 import 'package:todo/util/colors/colors.dart';
-import 'package:todo/util/snackbar/snackbar.dart';
-import 'package:todo/view/dashboard/dashboard.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
 import 'package:todo/view/widgets/textform.dart';
-import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -138,30 +132,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  // Future<void> loginUser() async {
-  //   var data = {
-  //     "email": _email,
-  //     "password": _password,
-  //   };
-
-  //   var res = await http.post(
-  //     Uri.parse('$baseUrl/login'),
-  //     headers: {"Content-Type": "application/json"},
-  //     body: jsonEncode(data),
-  //   );
-  //   final response = jsonDecode(res.body);
-  //   if (!response['status']) {
-  //     return snackBar(context: context, msg: response['message']);
-  //   }
-  //   if (response['status']) {
-  //     String token = response['token'];
-  //     prefs.setString('token', token);
-  //     Navigator.of(context).pushAndRemoveUntil(
-  //         MaterialPageRoute(
-  //           builder: (context) => Dashboard(token: token),
-  //         ),
-  //         (route) => false);
-  //   }
-  // }
 }
