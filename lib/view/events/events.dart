@@ -35,17 +35,19 @@ class EventsScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColor.blueSecondary,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CustomBoldText(
-            text: "Upcoming Events",
-            color: AppColor.whiteColor,
-          ),
-          Expanded(
-            child: BlocBuilder<EventsBloc, EventsState>(
-              builder: (context, state) {
-                return state.loading
+      body: BlocBuilder<EventsBloc, EventsState>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              state.events.isEmpty
+                  ? const SizedBox()
+                  : const CustomBoldText(
+                      text: "Upcoming Events",
+                      color: AppColor.whiteColor,
+                    ),
+              Expanded(
+                child: state.loading
                     ? const Center(child: CustomMiniLoader())
                     : state.events.isEmpty
                         ? const EmptyMessage(
@@ -82,11 +84,11 @@ class EventsScreen extends StatelessWidget {
                               );
                             },
                             itemCount: state.events.length,
-                          );
-              },
-            ),
-          )
-        ],
+                          ),
+              )
+            ],
+          );
+        },
       ),
       floatingActionButton: AddEventButton(userId: userId),
     );

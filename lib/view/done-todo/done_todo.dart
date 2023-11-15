@@ -43,7 +43,7 @@ class DoneTodo extends StatelessWidget {
                       ? const EmptyMessage(
                           title: "No Completed Tasks!",
                           desc: "Press the + button to add a task!",
-                          fontSize: 25,
+                          fontSize: 20,
                         )
                       : ListView.separated(
                           itemBuilder: (context, index) {
