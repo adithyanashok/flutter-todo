@@ -32,15 +32,16 @@ class EventController {
             .add(EventsEvent.getEvent(userId: eventModel.userId));
 
         // Generate a unique ID for the notification (using the event ID for simplicity)
-        int notificationId = eventModel.id.hashCode;
-
+        final id = eventModel.date.toString() +
+            eventModel.title +
+            DateTime.now().toString();
+        int notificationId = id.hashCode;
         NotificationClass.scheduleNotification(
           id: notificationId,
           title: eventModel.title,
           body: eventModel.desc,
           scheduledNotificationDateTime: eventModel.date,
         );
-
         Navigator.of(context).pop();
       }
       if (!response['status']) {
