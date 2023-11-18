@@ -65,7 +65,7 @@ class NotificationClass {
           NotificationDetails(android: androidNotificationDetails);
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
+        id,
         title,
         body,
         scheduledDate,

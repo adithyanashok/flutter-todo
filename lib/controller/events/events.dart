@@ -31,7 +31,11 @@ class EventController {
         BlocProvider.of<EventsBloc>(context)
             .add(EventsEvent.getEvent(userId: eventModel.userId));
 
+        // Generate a unique ID for the notification (using the event ID for simplicity)
+        int notificationId = eventModel.id.hashCode;
+
         NotificationClass.scheduleNotification(
+          id: notificationId,
           title: eventModel.title,
           body: eventModel.desc,
           scheduledNotificationDateTime: eventModel.date,
