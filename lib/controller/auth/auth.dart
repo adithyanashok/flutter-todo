@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/controller/notification/notification.dart';
 import 'package:todo/core/api.dart';
 import 'package:todo/util/snackbar/snackbar.dart';
 import 'package:todo/view/main_screen/main_screen.dart';
@@ -74,6 +75,7 @@ Future<void> loginUser(email, password, context) async {
 
   // If login was successful
   if (response['status']) {
+    await NotificationClass.requestNotificationPermission();
     // Extract the token from the response
     String token = response['token'];
 

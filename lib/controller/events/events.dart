@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:todo/bloc/events/events_bloc.dart';
+import 'package:todo/controller/notification/notification.dart';
 import 'package:todo/core/api.dart';
 import 'package:todo/model/events/events.dart';
 import 'package:todo/util/snackbar/snackbar.dart';
@@ -18,18 +19,23 @@ class EventController {
       "desc": eventModel.desc,
     };
 
-    log("DATA: $data");
-
     var res = await http.post(
       Uri.parse('$baseUrl/event/create-event'),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(data),
     );
+
     if (res.statusCode == 200 || res.statusCode == 201) {
       final response = jsonDecode(res.body);
       if (response['status']) {
         BlocProvider.of<EventsBloc>(context)
             .add(EventsEvent.getEvent(userId: eventModel.userId));
+
+        NotificationClass.scheduleNotification(
+          title: eventModel.title,
+          body: eventModel.desc,
+          scheduledNotificationDateTime: eventModel.date,
+        );
 
         Navigator.of(context).pop();
       }

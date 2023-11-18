@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
+import 'package:todo/controller/notification/notification.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/empty_widget.dart';
 import 'package:todo/view/widgets/loader.dart';
 import 'package:todo/view/widgets/text.dart';
 
-class DoneTodo extends StatelessWidget {
+class DoneTodo extends StatefulWidget {
   const DoneTodo({
     super.key,
     required this.id,
@@ -16,8 +17,21 @@ class DoneTodo extends StatelessWidget {
   final String id;
 
   @override
+  State<DoneTodo> createState() => _DoneTodoState();
+}
+
+class _DoneTodoState extends State<DoneTodo> {
+  NotificationClass notificationClass = NotificationClass();
+  @override
+  void initState() {
+    super.initState();
+    notificationClass.initializeNotifications();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<TodoBloc>(context).add(TodoEvent.getDoneTodos(userId: id));
+    BlocProvider.of<TodoBloc>(context)
+        .add(TodoEvent.getDoneTodos(userId: widget.id));
 
     return BlocBuilder<TodoBloc, TodoState>(
       builder: (context, state) {

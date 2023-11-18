@@ -5,14 +5,18 @@ import 'package:todo/bloc/auth/auth_bloc.dart';
 import 'package:todo/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:todo/bloc/events/events_bloc.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
-import 'package:todo/view/internet/internet.dart';
+import 'package:todo/controller/notification/notification.dart';
 import 'package:todo/view/login/login.dart';
 import 'package:todo/view/onboarding/onboarding.dart';
 import 'package:todo/view/signup/signup.dart';
 import 'package:todo/view/splash_screen/splash_screen.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationClass().initializeNotifications();
   await ScreenUtil.ensureScreenSize();
+  tz.initializeTimeZones();
   runApp(
     const MyApp(),
   );
