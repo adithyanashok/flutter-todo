@@ -7,6 +7,7 @@ import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/empty_widget.dart';
 import 'package:todo/view/widgets/loader.dart';
 import 'package:todo/view/widgets/text.dart';
+import 'package:todo/view/widgets/todo_list_item.dart';
 
 class DoneTodo extends StatefulWidget {
   const DoneTodo({
@@ -32,7 +33,7 @@ class _DoneTodoState extends State<DoneTodo> {
   Widget build(BuildContext context) {
     BlocProvider.of<TodoBloc>(context)
         .add(TodoEvent.getDoneTodos(userId: widget.id));
-
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<TodoBloc, TodoState>(
       builder: (context, state) {
         // print(state.doneTodos.length.toString());
@@ -62,28 +63,16 @@ class _DoneTodoState extends State<DoneTodo> {
                       : ListView.separated(
                           itemBuilder: (context, index) {
                             final todo = state.doneTodos[index];
+                            print(todo);
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              child: Card(
-                                child: ListTile(
-                                  tileColor: AppColor.blueSecondary,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      10,
-                                    ),
-                                  ),
-                                  title: Text(
-                                    todo.title!,
-                                    style: const TextStyle(
-                                      color: AppColor.whiteSecondary,
-                                    ),
-                                  ),
-                                  subtitle: CustomSmallText(
-                                    text: todo.desc!,
-                                    color: AppColor.blueWhite,
-                                  ),
-                                ),
+                              child: TaskItem(
+                                size: size,
+                                dateTime: todo.date!,
+                                note: "${todo.note}",
+                                time: todo.time!,
+                                title: "${todo.title}",
                               ),
                             );
                           },

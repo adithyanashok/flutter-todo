@@ -1,18 +1,19 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/controller/auth/auth.dart';
-import 'package:todo/controller/todo/todo.dart';
 import 'package:todo/util/colors/colors.dart';
+import 'package:todo/util/date.dart';
+import 'package:todo/view/add_task/add_task_screen.dart';
 import 'package:todo/view/done-todo/done_todo.dart';
 import 'package:todo/view/internet/internet.dart';
 import 'package:todo/view/tasks/tasks.dart';
-import 'package:todo/view/widgets/buttons.dart';
+import 'package:todo/view/widgets/loader.dart';
 import 'package:todo/view/widgets/text.dart';
-import 'package:todo/view/widgets/textform.dart';
 
 class Dashboard extends StatefulWidget {
   final String token;
@@ -26,11 +27,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   // Variables for user data
   late String email;
   late String id;
-
-  // Variables for form data
-  String _title = '';
-  String _desc = '';
-  bool validator = false;
 
   // Variable to store the current connectivity status
   late ConnectivityResult _connectivityResult;
@@ -67,7 +63,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // Fetch todos and done todos when the widget is built
-    BlocProvider.of<TodoBloc>(context).add(TodoEvent.getTodos(userId: id));
+    BlocProvider.of<TodoBloc>(context).add(TodoEvent.getTodos(
+      userId: id,
+      date: getCurrentDateAtMidnight(DateTime.now()),
+    ));
     BlocProvider.of<TodoBloc>(context).add(TodoEvent.getDoneTodos(userId: id));
 
     // Return either the InternetCheckScreen or the main scaffold based on connectivity
@@ -126,6 +125,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
+
                       // Tab for Done
                       Container(
                         width: .5.sw,
@@ -146,7 +146,65 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     // TabBarView to display the corresponding content for selected tab
                     child: TabBarView(
                       children: [
-                        TasksWidget(id: id),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0, vertical: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColor.blueGlass,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: const Border(
+                                    bottom: BorderSide(
+                                      color: AppColor.blueGlass,
+                                    ),
+                                    top: BorderSide(
+                                      color: AppColor.blueGlass,
+                                    ),
+                                    left: BorderSide(
+                                      color: AppColor.blueGlass,
+                                    ),
+                                    right: BorderSide(
+                                      color: AppColor.blueGlass,
+                                    ),
+                                  ),
+                                ),
+                                child: DatePicker(
+                                  DateTime.now(),
+                                  initialSelectedDate: DateTime.now(),
+                                  height: 90,
+                                  dateTextStyle: const TextStyle(
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  dayTextStyle: const TextStyle(
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  monthTextStyle: const TextStyle(
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  selectionColor: AppColor.blueSecondary,
+                                  onDateChange: (selectedDate) {
+                                    BlocProvider.of<TodoBloc>(context)
+                                        .add(TodoEvent.getTodos(
+                                      userId: id,
+                                      date: selectedDate.toString(),
+                                    ));
+                                  },
+                                ),
+                              ),
+                            ),
+                            BlocBuilder<TodoBloc, TodoState>(
+                              builder: (context, state) {
+                                return state.isLoading
+                                    ? const Center(
+                                        child: CustomMiniLoader(),
+                                      )
+                                    : TasksWidget(id: id);
+                              },
+                            ),
+                          ],
+                        ),
                         DoneTodo(id: id),
                       ],
                     ),
@@ -156,7 +214,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               floatingActionButton: FloatingActionButton(
                 backgroundColor: AppColor.whiteColor,
                 onPressed: () {
-                  tododialog(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddTaskScreen(id: id),
+                      ));
                 },
                 child: const Icon(
                   Icons.add,
@@ -165,70 +227,5 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               ),
             ),
           );
-  }
-
-  Future<dynamic> tododialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          backgroundColor: AppColor.whiteColor,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  // Dialog title
-                  const CustomBoldText(text: "Add Task"),
-
-                  // Text field for entering task title
-                  CustomTextField(
-                    hintText: "Title",
-                    icon: Icons.abc, // Replace with the appropriate icon
-                    // Validator for title field
-                    validator:
-                        validator && _title.isEmpty ? 'Fill this input' : null,
-                    onChange: (value) {
-                      _title = value;
-                    },
-                  ),
-
-                  // Text field for entering task description
-                  CustomTextField(
-                    hintText: "Description",
-                    icon: Icons
-                        .description_outlined, // Replace with the appropriate icon
-                    // Validator for description field
-                    validator:
-                        validator && _desc.isEmpty ? 'Fill this input' : null,
-                    onChange: (value) {
-                      _desc = value;
-                    },
-                  ),
-
-                  // Button to submit the task
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: CustomButton(
-                      text: "Done",
-                      onTap: () {
-                        setState(() {
-                          validator = true;
-                        });
-
-                        // Check if title and description are not empty
-                        if (_title.isNotEmpty && _desc.isNotEmpty) {
-                          TodoController.addToTodo(_title, _desc, id, context);
-                        }
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 }

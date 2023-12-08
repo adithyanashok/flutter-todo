@@ -8,16 +8,18 @@ class CustomSmallText extends StatelessWidget {
     super.key,
     required this.text,
     this.color = Colors.black,
+    this.fontSize = 12,
   });
   final String text;
   final Color color;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.poppins(
-        fontSize: 12.sp,
+        fontSize: fontSize.sp,
         fontWeight: FontWeight.w400,
         color: color,
       ),
@@ -31,19 +33,24 @@ class CustomBoldText extends StatelessWidget {
     required this.text,
     this.fontSize = 14,
     this.color = Colors.black,
+    this.fontWeight = FontWeight.bold,
+    this.textAlign,
   });
   final String text;
   final double fontSize;
   final Color color;
+  final FontWeight fontWeight;
+  final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.poppins(
         fontSize: fontSize.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: fontWeight,
         color: color,
       ),
+      textAlign: textAlign,
     );
   }
 }

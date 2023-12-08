@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/loader.dart';
+import 'package:todo/view/widgets/text.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -49,6 +51,40 @@ class CustomButton extends StatelessWidget {
                 color: textColor,
               ),
             ),
+    );
+  }
+}
+
+class CustomButton2 extends StatelessWidget {
+  const CustomButton2({
+    super.key,
+    this.onTap,
+  });
+
+  final Function? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap!();
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        width: 360,
+        height: 50,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 44, 70, 219),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: CustomBoldText(
+            text: "Create Task",
+            color: AppColor.whiteColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
     );
   }
 }

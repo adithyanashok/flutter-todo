@@ -34,6 +34,7 @@ Future<void> registerUser(email, password, context) async {
   // If registration is successful, store the token in SharedPreferences
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if (response['status']) {
+    await NotificationClass.requestNotificationPermission();
     String token = response['token'];
     prefs.setString('token', token);
 

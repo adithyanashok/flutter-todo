@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:todo/bloc/todo/todo_bloc.dart';
+import 'package:todo/controller/notification/notification.dart';
 import 'package:todo/core/api.dart';
 import 'package:todo/model/todo/todo.dart';
+import 'package:todo/util/date.dart';
 import 'package:todo/util/snackbar/snackbar.dart';
 
 class TodoController {
-  static Future<void> addToTodo(title, desc, userId, context) async {
-    var data = {
-      "title": title,
-      "desc": desc,
-      "userId": userId,
-    };
-
+  static Future<void> addToTodo(Todo todo, context) async {
+    final data = todo.toJson();
     var res = await http.post(
       Uri.parse('$baseUrl/todo/add-todo'),
       headers: {"Content-Type": "application/json"},
@@ -24,8 +21,19 @@ class TodoController {
     if (res.statusCode == 200 || res.statusCode == 201) {
       final response = jsonDecode(res.body);
       if (response['status']) {
-        BlocProvider.of<TodoBloc>(context)
-            .add(TodoEvent.getTodos(userId: userId));
+        // Scheduling the notification
+        NotificationClass.scheduleNotification(
+          id: todo.date.hashCode + DateTime.now().hashCode,
+          title: todo.title,
+          body: todo.note,
+          scheduledNotificationDateTime: todo.date!,
+        );
+        BlocProvider.of<TodoBloc>(context).add(TodoEvent.getTodos(
+          userId: data['userId'],
+          date: getCurrentDateAtMidnight(
+            DateTime.now(),
+          ),
+        ));
 
         Navigator.of(context).pop();
       }
@@ -36,10 +44,10 @@ class TodoController {
   }
 
   // Function to fetch todos for a specific user
-  static Future<List<Todo>> getTodo(userId) async {
+  static Future<List<Todo>> getTodo(userId, date) async {
     // Send a GET request to retrieve todos for the specified user
     var res = await http.get(
-      Uri.parse('$baseUrl/todo/get-todo/$userId'),
+      Uri.parse('$baseUrl/todo/get-todo/$userId/$date'),
       headers: {"Content-Type": "application/json"},
     );
 
@@ -103,17 +111,20 @@ class TodoController {
     );
   }
 
-  static Future<void> doneTodo(title, desc, id, BuildContext context) async {
-    var data = {
-      "title": title,
-      "desc": desc,
-      "userId": id,
-    };
+  static Future<void> doneTodo(
+      title, note, userId, time, date, id, BuildContext context) async {
+    final todo = Todo(
+      userId: userId,
+      title: title,
+      note: note,
+      date: date,
+      time: time,
+    );
 
     var res = await http.post(
       Uri.parse('$baseUrl/todo/done-todo'),
       headers: {"Content-Type": "application/json"},
-      body: jsonEncode(data),
+      body: jsonEncode(todo.toJson()),
     );
     final response = jsonDecode(res.body);
     if (response['status']) {}

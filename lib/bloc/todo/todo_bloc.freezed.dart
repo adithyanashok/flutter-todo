@@ -19,28 +19,28 @@ mixin _$TodoEvent {
   dynamic get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic userId) getTodos,
+    required TResult Function(dynamic userId, dynamic date) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(dynamic title, dynamic desc, dynamic id,
-            dynamic userId, dynamic context)
+    required TResult Function(dynamic title, dynamic note, dynamic userId,
+            dynamic time, dynamic date, dynamic id, dynamic context)
         deleteTodos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic userId)? getTodos,
+    TResult? Function(dynamic userId, dynamic date)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult? Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic userId)? getTodos,
+    TResult Function(dynamic userId, dynamic date)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) =>
@@ -113,7 +113,7 @@ abstract class _$$GetTodosImplCopyWith<$Res>
       __$$GetTodosImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic userId});
+  $Res call({dynamic userId, dynamic date});
 }
 
 /// @nodoc
@@ -128,9 +128,11 @@ class __$$GetTodosImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$GetTodosImpl(
       userId: freezed == userId ? _value.userId! : userId,
+      date: freezed == date ? _value.date! : date,
     ));
   }
 }
@@ -138,14 +140,16 @@ class __$$GetTodosImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetTodosImpl implements _GetTodos {
-  const _$GetTodosImpl({this.userId});
+  const _$GetTodosImpl({this.userId, this.date});
 
   @override
   final dynamic userId;
+  @override
+  final dynamic date;
 
   @override
   String toString() {
-    return 'TodoEvent.getTodos(userId: $userId)';
+    return 'TodoEvent.getTodos(userId: $userId, date: $date)';
   }
 
   @override
@@ -153,12 +157,15 @@ class _$GetTodosImpl implements _GetTodos {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetTodosImpl &&
-            const DeepCollectionEquality().equals(other.userId, userId));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
@@ -169,39 +176,39 @@ class _$GetTodosImpl implements _GetTodos {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic userId) getTodos,
+    required TResult Function(dynamic userId, dynamic date) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(dynamic title, dynamic desc, dynamic id,
-            dynamic userId, dynamic context)
+    required TResult Function(dynamic title, dynamic note, dynamic userId,
+            dynamic time, dynamic date, dynamic id, dynamic context)
         deleteTodos,
   }) {
-    return getTodos(userId);
+    return getTodos(userId, date);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic userId)? getTodos,
+    TResult? Function(dynamic userId, dynamic date)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult? Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
   }) {
-    return getTodos?.call(userId);
+    return getTodos?.call(userId, date);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic userId)? getTodos,
+    TResult Function(dynamic userId, dynamic date)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
     if (getTodos != null) {
-      return getTodos(userId);
+      return getTodos(userId, date);
     }
     return orElse();
   }
@@ -242,10 +249,12 @@ class _$GetTodosImpl implements _GetTodos {
 }
 
 abstract class _GetTodos implements TodoEvent {
-  const factory _GetTodos({final dynamic userId}) = _$GetTodosImpl;
+  const factory _GetTodos({final dynamic userId, final dynamic date}) =
+      _$GetTodosImpl;
 
   @override
   dynamic get userId;
+  dynamic get date;
   @override
   @JsonKey(ignore: true)
   _$$GetTodosImplCopyWith<_$GetTodosImpl> get copyWith =>
@@ -316,10 +325,10 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic userId) getTodos,
+    required TResult Function(dynamic userId, dynamic date) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(dynamic title, dynamic desc, dynamic id,
-            dynamic userId, dynamic context)
+    required TResult Function(dynamic title, dynamic note, dynamic userId,
+            dynamic time, dynamic date, dynamic id, dynamic context)
         deleteTodos,
   }) {
     return getDoneTodos(userId);
@@ -328,10 +337,10 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic userId)? getTodos,
+    TResult? Function(dynamic userId, dynamic date)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult? Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
   }) {
     return getDoneTodos?.call(userId);
@@ -340,10 +349,10 @@ class _$GetDoneTodosImpl implements _GetDoneTodos {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic userId)? getTodos,
+    TResult Function(dynamic userId, dynamic date)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
@@ -409,9 +418,11 @@ abstract class _$$DeleteTodosImplCopyWith<$Res>
   @useResult
   $Res call(
       {dynamic title,
-      dynamic desc,
-      dynamic id,
+      dynamic note,
       dynamic userId,
+      dynamic time,
+      dynamic date,
+      dynamic id,
       dynamic context});
 }
 
@@ -427,16 +438,20 @@ class __$$DeleteTodosImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
-    Object? desc = freezed,
-    Object? id = freezed,
+    Object? note = freezed,
     Object? userId = freezed,
+    Object? time = freezed,
+    Object? date = freezed,
+    Object? id = freezed,
     Object? context = freezed,
   }) {
     return _then(_$DeleteTodosImpl(
       title: freezed == title ? _value.title! : title,
-      desc: freezed == desc ? _value.desc! : desc,
-      id: freezed == id ? _value.id! : id,
+      note: freezed == note ? _value.note! : note,
       userId: freezed == userId ? _value.userId! : userId,
+      time: freezed == time ? _value.time! : time,
+      date: freezed == date ? _value.date! : date,
+      id: freezed == id ? _value.id! : id,
       context: freezed == context ? _value.context! : context,
     ));
   }
@@ -446,22 +461,32 @@ class __$$DeleteTodosImplCopyWithImpl<$Res>
 
 class _$DeleteTodosImpl implements _DeleteTodos {
   const _$DeleteTodosImpl(
-      {this.title, this.desc, this.id, this.userId, this.context});
+      {this.title,
+      this.note,
+      this.userId,
+      this.time,
+      this.date,
+      this.id,
+      this.context});
 
   @override
   final dynamic title;
   @override
-  final dynamic desc;
-  @override
-  final dynamic id;
+  final dynamic note;
   @override
   final dynamic userId;
+  @override
+  final dynamic time;
+  @override
+  final dynamic date;
+  @override
+  final dynamic id;
   @override
   final dynamic context;
 
   @override
   String toString() {
-    return 'TodoEvent.deleteTodos(title: $title, desc: $desc, id: $id, userId: $userId, context: $context)';
+    return 'TodoEvent.deleteTodos(title: $title, note: $note, userId: $userId, time: $time, date: $date, id: $id, context: $context)';
   }
 
   @override
@@ -470,9 +495,11 @@ class _$DeleteTodosImpl implements _DeleteTodos {
         (other.runtimeType == runtimeType &&
             other is _$DeleteTodosImpl &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.desc, desc) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality().equals(other.date, date) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.context, context));
   }
 
@@ -480,9 +507,11 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(desc),
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(context));
 
   @JsonKey(ignore: true)
@@ -494,39 +523,39 @@ class _$DeleteTodosImpl implements _DeleteTodos {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic userId) getTodos,
+    required TResult Function(dynamic userId, dynamic date) getTodos,
     required TResult Function(dynamic userId) getDoneTodos,
-    required TResult Function(dynamic title, dynamic desc, dynamic id,
-            dynamic userId, dynamic context)
+    required TResult Function(dynamic title, dynamic note, dynamic userId,
+            dynamic time, dynamic date, dynamic id, dynamic context)
         deleteTodos,
   }) {
-    return deleteTodos(title, desc, id, userId, context);
+    return deleteTodos(title, note, userId, time, date, id, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic userId)? getTodos,
+    TResult? Function(dynamic userId, dynamic date)? getTodos,
     TResult? Function(dynamic userId)? getDoneTodos,
-    TResult? Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult? Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
   }) {
-    return deleteTodos?.call(title, desc, id, userId, context);
+    return deleteTodos?.call(title, note, userId, time, date, id, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic userId)? getTodos,
+    TResult Function(dynamic userId, dynamic date)? getTodos,
     TResult Function(dynamic userId)? getDoneTodos,
-    TResult Function(dynamic title, dynamic desc, dynamic id, dynamic userId,
-            dynamic context)?
+    TResult Function(dynamic title, dynamic note, dynamic userId, dynamic time,
+            dynamic date, dynamic id, dynamic context)?
         deleteTodos,
     required TResult orElse(),
   }) {
     if (deleteTodos != null) {
-      return deleteTodos(title, desc, id, userId, context);
+      return deleteTodos(title, note, userId, time, date, id, context);
     }
     return orElse();
   }
@@ -569,16 +598,20 @@ class _$DeleteTodosImpl implements _DeleteTodos {
 abstract class _DeleteTodos implements TodoEvent {
   const factory _DeleteTodos(
       {final dynamic title,
-      final dynamic desc,
-      final dynamic id,
+      final dynamic note,
       final dynamic userId,
+      final dynamic time,
+      final dynamic date,
+      final dynamic id,
       final dynamic context}) = _$DeleteTodosImpl;
 
   dynamic get title;
-  dynamic get desc;
-  dynamic get id;
+  dynamic get note;
   @override
   dynamic get userId;
+  dynamic get time;
+  dynamic get date;
+  dynamic get id;
   dynamic get context;
   @override
   @JsonKey(ignore: true)

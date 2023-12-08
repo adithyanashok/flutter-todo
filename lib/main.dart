@@ -6,6 +6,8 @@ import 'package:todo/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:todo/bloc/events/events_bloc.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/controller/notification/notification.dart';
+import 'package:todo/util/colors/colors.dart';
+import 'package:todo/view/add_task/add_task_screen.dart';
 import 'package:todo/view/login/login.dart';
 import 'package:todo/view/onboarding/onboarding.dart';
 import 'package:todo/view/signup/signup.dart';
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             splashColor: Colors.transparent,
             useMaterial3: true,
+            primarySwatch: Colors.blue,
           ),
           debugShowCheckedModeBanner: false,
           home: const SplashScreen(),

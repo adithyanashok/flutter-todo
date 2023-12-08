@@ -5,6 +5,7 @@ import 'package:todo/bloc/events/events_bloc.dart';
 import 'package:todo/model/events/events.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/util/date.dart';
+import 'package:todo/view/add-notes/add_notes_screen.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/empty_widget.dart';
 import 'package:todo/view/widgets/event_card.dart';
@@ -90,7 +91,16 @@ class EventsScreen extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: AddEventButton(userId: userId),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AddNotes(userId: userId),
+            ));
+          },
+          child: Icon(
+            Icons.add,
+            color: AppColor.blueWhite,
+          )),
     );
   }
 }
