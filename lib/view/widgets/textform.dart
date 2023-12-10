@@ -4,7 +4,7 @@ import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/text.dart';
 
 class CustomTextField extends StatefulWidget {
-  CustomTextField({
+  const CustomTextField({
     super.key,
     required this.hintText,
     required this.icon,
@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.obscureText = false,
     this.initialValue = '',
+    this.suffix,
   });
 
   final String hintText;
@@ -20,6 +21,7 @@ class CustomTextField extends StatefulWidget {
   final String? validator;
   final bool obscureText;
   final String initialValue;
+  final Widget? suffix;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -44,7 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
-      style: GoogleFonts.poppins(color: AppColor.blueColor),
+      style: GoogleFonts.poppins(color: AppColor.blueColor, fontSize: 14),
       onChanged: (value) {
         widget.onChange!(value);
       },
@@ -52,6 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIcon: Icon(widget.icon),
+        suffixIcon: widget.suffix,
         prefixIconColor: AppColor.blueColor,
         errorText: widget.validator,
         border: const UnderlineInputBorder(

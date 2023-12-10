@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password = '';
   String _email = '';
   bool validator = false;
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +78,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: CustomTextField(
                   hintText: "Enter your password",
                   icon: Icons.lock,
-                  obscureText: true,
+                  obscureText: obscureText,
+                  suffix: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                    icon: Icon(
+                      obscureText
+                          ? Icons.remove_red_eye_outlined
+                          : Icons.visibility_off,
+                      color: AppColor.blueColor,
+                    ),
+                  ),
                   onChange: (value) {
                     setState(() {
                       _password = value;

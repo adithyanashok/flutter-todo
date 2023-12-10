@@ -21,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   String _email = '';
   String _password = '';
   bool validator = false;
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +76,26 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: CustomTextField(
                     hintText: "Enter your password",
                     icon: Icons.lock,
+
                     onChange: (value) {
                       setState(() {
                         _password = value;
                       });
                     },
-                    obscureText: true,
+                    obscureText: obscureText,
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                      icon: Icon(
+                        obscureText
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.visibility_off,
+                        color: AppColor.blueColor,
+                      ),
+                    ),
                     // Validate password only if the validator is true
                     validator: validator && _password.isEmpty
                         ? 'Enter a password'

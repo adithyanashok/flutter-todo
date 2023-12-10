@@ -55,7 +55,7 @@ class NotificationClass {
         channel.id.toString(),
         channel.name.toString(),
         icon: '@mipmap/ic_launcher',
-        importance: Importance.high,
+        importance: Importance.max,
         playSound: true,
         priority: Priority.high,
         ticker: 'ticker',
