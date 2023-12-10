@@ -16,43 +16,62 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NotesEvent {
-  dynamic get noteModel => throw _privateConstructorUsedError;
   dynamic get context => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic noteModel, dynamic context) addNote,
+    required TResult Function(String userId, BuildContext context) getNotes,
+    required TResult Function(String noteId, BuildContext context) deleteNote,
+    required TResult Function(
+            String title, String desc, String noteId, BuildContext context)
+        editNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic noteModel, dynamic context)? addNote,
+    TResult? Function(String userId, BuildContext context)? getNotes,
+    TResult? Function(String noteId, BuildContext context)? deleteNote,
+    TResult? Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic noteModel, dynamic context)? addNote,
+    TResult Function(String userId, BuildContext context)? getNotes,
+    TResult Function(String noteId, BuildContext context)? deleteNote,
+    TResult Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddNote value) addNote,
+    required TResult Function(_GetNotes value) getNotes,
+    required TResult Function(_DeleteNote value) deleteNote,
+    required TResult Function(_EditNote value) editNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddNote value)? addNote,
+    TResult? Function(_GetNotes value)? getNotes,
+    TResult? Function(_DeleteNote value)? deleteNote,
+    TResult? Function(_EditNote value)? editNote,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddNote value)? addNote,
+    TResult Function(_GetNotes value)? getNotes,
+    TResult Function(_DeleteNote value)? deleteNote,
+    TResult Function(_EditNote value)? editNote,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $NotesEventCopyWith<NotesEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,8 +80,6 @@ abstract class $NotesEventCopyWith<$Res> {
   factory $NotesEventCopyWith(
           NotesEvent value, $Res Function(NotesEvent) then) =
       _$NotesEventCopyWithImpl<$Res, NotesEvent>;
-  @useResult
-  $Res call({dynamic noteModel, dynamic context});
 }
 
 /// @nodoc
@@ -74,33 +91,13 @@ class _$NotesEventCopyWithImpl<$Res, $Val extends NotesEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? noteModel = freezed,
-    Object? context = freezed,
-  }) {
-    return _then(_value.copyWith(
-      noteModel: freezed == noteModel
-          ? _value.noteModel
-          : noteModel // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      context: freezed == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AddNoteImplCopyWith<$Res>
-    implements $NotesEventCopyWith<$Res> {
+abstract class _$$AddNoteImplCopyWith<$Res> {
   factory _$$AddNoteImplCopyWith(
           _$AddNoteImpl value, $Res Function(_$AddNoteImpl) then) =
       __$$AddNoteImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({dynamic noteModel, dynamic context});
 }
@@ -166,6 +163,11 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic noteModel, dynamic context) addNote,
+    required TResult Function(String userId, BuildContext context) getNotes,
+    required TResult Function(String noteId, BuildContext context) deleteNote,
+    required TResult Function(
+            String title, String desc, String noteId, BuildContext context)
+        editNote,
   }) {
     return addNote(noteModel, context);
   }
@@ -174,6 +176,11 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic noteModel, dynamic context)? addNote,
+    TResult? Function(String userId, BuildContext context)? getNotes,
+    TResult? Function(String noteId, BuildContext context)? deleteNote,
+    TResult? Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
   }) {
     return addNote?.call(noteModel, context);
   }
@@ -182,6 +189,11 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic noteModel, dynamic context)? addNote,
+    TResult Function(String userId, BuildContext context)? getNotes,
+    TResult Function(String noteId, BuildContext context)? deleteNote,
+    TResult Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
     required TResult orElse(),
   }) {
     if (addNote != null) {
@@ -194,6 +206,9 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddNote value) addNote,
+    required TResult Function(_GetNotes value) getNotes,
+    required TResult Function(_DeleteNote value) deleteNote,
+    required TResult Function(_EditNote value) editNote,
   }) {
     return addNote(this);
   }
@@ -202,6 +217,9 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddNote value)? addNote,
+    TResult? Function(_GetNotes value)? getNotes,
+    TResult? Function(_DeleteNote value)? deleteNote,
+    TResult? Function(_EditNote value)? editNote,
   }) {
     return addNote?.call(this);
   }
@@ -210,6 +228,9 @@ class _$AddNoteImpl implements _AddNote {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddNote value)? addNote,
+    TResult Function(_GetNotes value)? getNotes,
+    TResult Function(_DeleteNote value)? deleteNote,
+    TResult Function(_EditNote value)? editNote,
     required TResult orElse(),
   }) {
     if (addNote != null) {
@@ -223,13 +244,524 @@ abstract class _AddNote implements NotesEvent {
   const factory _AddNote({final dynamic noteModel, final dynamic context}) =
       _$AddNoteImpl;
 
-  @override
   dynamic get noteModel;
   @override
   dynamic get context;
-  @override
   @JsonKey(ignore: true)
   _$$AddNoteImplCopyWith<_$AddNoteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetNotesImplCopyWith<$Res> {
+  factory _$$GetNotesImplCopyWith(
+          _$GetNotesImpl value, $Res Function(_$GetNotesImpl) then) =
+      __$$GetNotesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId, BuildContext context});
+}
+
+/// @nodoc
+class __$$GetNotesImplCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$GetNotesImpl>
+    implements _$$GetNotesImplCopyWith<$Res> {
+  __$$GetNotesImplCopyWithImpl(
+      _$GetNotesImpl _value, $Res Function(_$GetNotesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? context = null,
+  }) {
+    return _then(_$GetNotesImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetNotesImpl implements _GetNotes {
+  const _$GetNotesImpl({required this.userId, required this.context});
+
+  @override
+  final String userId;
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'NotesEvent.getNotes(userId: $userId, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetNotesImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetNotesImplCopyWith<_$GetNotesImpl> get copyWith =>
+      __$$GetNotesImplCopyWithImpl<_$GetNotesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(dynamic noteModel, dynamic context) addNote,
+    required TResult Function(String userId, BuildContext context) getNotes,
+    required TResult Function(String noteId, BuildContext context) deleteNote,
+    required TResult Function(
+            String title, String desc, String noteId, BuildContext context)
+        editNote,
+  }) {
+    return getNotes(userId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(dynamic noteModel, dynamic context)? addNote,
+    TResult? Function(String userId, BuildContext context)? getNotes,
+    TResult? Function(String noteId, BuildContext context)? deleteNote,
+    TResult? Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+  }) {
+    return getNotes?.call(userId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(dynamic noteModel, dynamic context)? addNote,
+    TResult Function(String userId, BuildContext context)? getNotes,
+    TResult Function(String noteId, BuildContext context)? deleteNote,
+    TResult Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+    required TResult orElse(),
+  }) {
+    if (getNotes != null) {
+      return getNotes(userId, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddNote value) addNote,
+    required TResult Function(_GetNotes value) getNotes,
+    required TResult Function(_DeleteNote value) deleteNote,
+    required TResult Function(_EditNote value) editNote,
+  }) {
+    return getNotes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddNote value)? addNote,
+    TResult? Function(_GetNotes value)? getNotes,
+    TResult? Function(_DeleteNote value)? deleteNote,
+    TResult? Function(_EditNote value)? editNote,
+  }) {
+    return getNotes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddNote value)? addNote,
+    TResult Function(_GetNotes value)? getNotes,
+    TResult Function(_DeleteNote value)? deleteNote,
+    TResult Function(_EditNote value)? editNote,
+    required TResult orElse(),
+  }) {
+    if (getNotes != null) {
+      return getNotes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetNotes implements NotesEvent {
+  const factory _GetNotes(
+      {required final String userId,
+      required final BuildContext context}) = _$GetNotesImpl;
+
+  String get userId;
+  @override
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$GetNotesImplCopyWith<_$GetNotesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteNoteImplCopyWith<$Res> {
+  factory _$$DeleteNoteImplCopyWith(
+          _$DeleteNoteImpl value, $Res Function(_$DeleteNoteImpl) then) =
+      __$$DeleteNoteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String noteId, BuildContext context});
+}
+
+/// @nodoc
+class __$$DeleteNoteImplCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$DeleteNoteImpl>
+    implements _$$DeleteNoteImplCopyWith<$Res> {
+  __$$DeleteNoteImplCopyWithImpl(
+      _$DeleteNoteImpl _value, $Res Function(_$DeleteNoteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? noteId = null,
+    Object? context = null,
+  }) {
+    return _then(_$DeleteNoteImpl(
+      noteId: null == noteId
+          ? _value.noteId
+          : noteId // ignore: cast_nullable_to_non_nullable
+              as String,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteNoteImpl implements _DeleteNote {
+  const _$DeleteNoteImpl({required this.noteId, required this.context});
+
+  @override
+  final String noteId;
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'NotesEvent.deleteNote(noteId: $noteId, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteNoteImpl &&
+            (identical(other.noteId, noteId) || other.noteId == noteId) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, noteId, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteNoteImplCopyWith<_$DeleteNoteImpl> get copyWith =>
+      __$$DeleteNoteImplCopyWithImpl<_$DeleteNoteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(dynamic noteModel, dynamic context) addNote,
+    required TResult Function(String userId, BuildContext context) getNotes,
+    required TResult Function(String noteId, BuildContext context) deleteNote,
+    required TResult Function(
+            String title, String desc, String noteId, BuildContext context)
+        editNote,
+  }) {
+    return deleteNote(noteId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(dynamic noteModel, dynamic context)? addNote,
+    TResult? Function(String userId, BuildContext context)? getNotes,
+    TResult? Function(String noteId, BuildContext context)? deleteNote,
+    TResult? Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+  }) {
+    return deleteNote?.call(noteId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(dynamic noteModel, dynamic context)? addNote,
+    TResult Function(String userId, BuildContext context)? getNotes,
+    TResult Function(String noteId, BuildContext context)? deleteNote,
+    TResult Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+    required TResult orElse(),
+  }) {
+    if (deleteNote != null) {
+      return deleteNote(noteId, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddNote value) addNote,
+    required TResult Function(_GetNotes value) getNotes,
+    required TResult Function(_DeleteNote value) deleteNote,
+    required TResult Function(_EditNote value) editNote,
+  }) {
+    return deleteNote(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddNote value)? addNote,
+    TResult? Function(_GetNotes value)? getNotes,
+    TResult? Function(_DeleteNote value)? deleteNote,
+    TResult? Function(_EditNote value)? editNote,
+  }) {
+    return deleteNote?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddNote value)? addNote,
+    TResult Function(_GetNotes value)? getNotes,
+    TResult Function(_DeleteNote value)? deleteNote,
+    TResult Function(_EditNote value)? editNote,
+    required TResult orElse(),
+  }) {
+    if (deleteNote != null) {
+      return deleteNote(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNote implements NotesEvent {
+  const factory _DeleteNote(
+      {required final String noteId,
+      required final BuildContext context}) = _$DeleteNoteImpl;
+
+  String get noteId;
+  @override
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$DeleteNoteImplCopyWith<_$DeleteNoteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditNoteImplCopyWith<$Res> {
+  factory _$$EditNoteImplCopyWith(
+          _$EditNoteImpl value, $Res Function(_$EditNoteImpl) then) =
+      __$$EditNoteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title, String desc, String noteId, BuildContext context});
+}
+
+/// @nodoc
+class __$$EditNoteImplCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$EditNoteImpl>
+    implements _$$EditNoteImplCopyWith<$Res> {
+  __$$EditNoteImplCopyWithImpl(
+      _$EditNoteImpl _value, $Res Function(_$EditNoteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? desc = null,
+    Object? noteId = null,
+    Object? context = null,
+  }) {
+    return _then(_$EditNoteImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: null == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String,
+      noteId: null == noteId
+          ? _value.noteId
+          : noteId // ignore: cast_nullable_to_non_nullable
+              as String,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditNoteImpl implements _EditNote {
+  const _$EditNoteImpl(
+      {required this.title,
+      required this.desc,
+      required this.noteId,
+      required this.context});
+
+  @override
+  final String title;
+  @override
+  final String desc;
+  @override
+  final String noteId;
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'NotesEvent.editNote(title: $title, desc: $desc, noteId: $noteId, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditNoteImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.desc, desc) || other.desc == desc) &&
+            (identical(other.noteId, noteId) || other.noteId == noteId) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, title, desc, noteId, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditNoteImplCopyWith<_$EditNoteImpl> get copyWith =>
+      __$$EditNoteImplCopyWithImpl<_$EditNoteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(dynamic noteModel, dynamic context) addNote,
+    required TResult Function(String userId, BuildContext context) getNotes,
+    required TResult Function(String noteId, BuildContext context) deleteNote,
+    required TResult Function(
+            String title, String desc, String noteId, BuildContext context)
+        editNote,
+  }) {
+    return editNote(title, desc, noteId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(dynamic noteModel, dynamic context)? addNote,
+    TResult? Function(String userId, BuildContext context)? getNotes,
+    TResult? Function(String noteId, BuildContext context)? deleteNote,
+    TResult? Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+  }) {
+    return editNote?.call(title, desc, noteId, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(dynamic noteModel, dynamic context)? addNote,
+    TResult Function(String userId, BuildContext context)? getNotes,
+    TResult Function(String noteId, BuildContext context)? deleteNote,
+    TResult Function(
+            String title, String desc, String noteId, BuildContext context)?
+        editNote,
+    required TResult orElse(),
+  }) {
+    if (editNote != null) {
+      return editNote(title, desc, noteId, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddNote value) addNote,
+    required TResult Function(_GetNotes value) getNotes,
+    required TResult Function(_DeleteNote value) deleteNote,
+    required TResult Function(_EditNote value) editNote,
+  }) {
+    return editNote(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddNote value)? addNote,
+    TResult? Function(_GetNotes value)? getNotes,
+    TResult? Function(_DeleteNote value)? deleteNote,
+    TResult? Function(_EditNote value)? editNote,
+  }) {
+    return editNote?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddNote value)? addNote,
+    TResult Function(_GetNotes value)? getNotes,
+    TResult Function(_DeleteNote value)? deleteNote,
+    TResult Function(_EditNote value)? editNote,
+    required TResult orElse(),
+  }) {
+    if (editNote != null) {
+      return editNote(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditNote implements NotesEvent {
+  const factory _EditNote(
+      {required final String title,
+      required final String desc,
+      required final String noteId,
+      required final BuildContext context}) = _$EditNoteImpl;
+
+  String get title;
+  String get desc;
+  String get noteId;
+  @override
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$EditNoteImplCopyWith<_$EditNoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/bloc/auth/auth_bloc.dart';
 import 'package:todo/bloc/bottom_nav/bottom_nav_bloc.dart';
-import 'package:todo/bloc/events/events_bloc.dart';
+import 'package:todo/bloc/notes/notes_bloc.dart';
 import 'package:todo/bloc/todo/todo_bloc.dart';
 import 'package:todo/controller/notification/notification.dart';
-import 'package:todo/util/colors/colors.dart';
-import 'package:todo/view/add_task/add_task_screen.dart';
 import 'package:todo/view/login/login.dart';
 import 'package:todo/view/onboarding/onboarding.dart';
 import 'package:todo/view/signup/signup.dart';
@@ -46,7 +44,7 @@ class MyApp extends StatelessWidget {
             create: (context) => BottomNavBloc(),
           ),
           BlocProvider(
-            create: (context) => EventsBloc(),
+            create: (context) => NotesBloc(),
           ),
         ],
         child: MaterialApp(

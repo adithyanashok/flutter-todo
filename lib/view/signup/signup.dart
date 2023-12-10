@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/bloc/auth/auth_bloc.dart';
-import 'package:todo/controller/auth/auth.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
@@ -46,7 +45,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: CustomHeadingText(text: "Create account!"),
+                    child: CustomHeadingText(
+                      text: "Create account!",
+                      fontSize: 40,
+                    ),
                   ),
                 ),
                 Padding(
@@ -91,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     builder: (context, state) {
                       return CustomButton(
                         text: "Signup",
-                        height: 60,
+                        height: 55,
                         color: AppColor.blueColor,
                         loading: state.isLoading,
                         onTap: () {
@@ -119,12 +121,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     const CustomSmallText(
                       text: "Already have an account?",
+                      fontSize: 11,
                     ),
                     InkWell(
                       onTap: () {
                         Navigator.of(context).pushNamed('login');
                       },
-                      child: const CustomBoldText(text: "Login"),
+                      child: const CustomBoldText(text: "Login", fontSize: 13),
                     ),
                   ],
                 )

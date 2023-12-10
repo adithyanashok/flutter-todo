@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:todo/bloc/bottom_nav/bottom_nav_bloc.dart';
 import 'package:todo/util/colors/colors.dart';
 import 'package:todo/view/dashboard/dashboard.dart';
-import 'package:todo/view/events/events.dart';
+import 'package:todo/view/notes/notes_screen.dart.dart';
 
 class MainScreen extends StatelessWidget {
   final String token;
@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screens = [
       Dashboard(token: token),
-      EventsScreen(
+      NotesScreen(
         token: token,
       ),
     ];

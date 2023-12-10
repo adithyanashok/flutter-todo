@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo/util/colors/colors.dart';
-import 'package:todo/view/widgets/buttons.dart';
 import 'package:todo/view/widgets/text.dart';
 
 class OnboardingScreen extends StatelessWidget {

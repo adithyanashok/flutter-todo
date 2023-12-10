@@ -63,7 +63,6 @@ class _DoneTodoState extends State<DoneTodo> {
                       : ListView.separated(
                           itemBuilder: (context, index) {
                             final todo = state.doneTodos[index];
-                            print(todo);
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),

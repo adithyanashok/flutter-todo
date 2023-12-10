@@ -117,12 +117,15 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CustomSmallText(text: "Don't have an account?"),
+                  const CustomSmallText(
+                    text: "Don't have an account?",
+                    fontSize: 11,
+                  ),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pushNamed('signup');
                     },
-                    child: const CustomBoldText(text: "Signup"),
+                    child: const CustomBoldText(text: "Signup", fontSize: 13),
                   ),
                 ],
               )

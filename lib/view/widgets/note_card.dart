@@ -4,8 +4,8 @@ import 'package:todo/util/colors/colors.dart';
 import 'package:todo/util/date.dart';
 import 'package:todo/view/widgets/text.dart';
 
-class EventCard extends StatelessWidget {
-  const EventCard({
+class NotesCard extends StatelessWidget {
+  const NotesCard({
     super.key,
     required this.date,
     required this.title,
@@ -43,6 +43,8 @@ class EventCard extends StatelessWidget {
             CustomSmallText(
               text: desc,
               color: AppColor.blueWhite,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
             )
           ],
         ),

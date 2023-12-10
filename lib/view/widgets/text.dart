@@ -9,15 +9,21 @@ class CustomSmallText extends StatelessWidget {
     required this.text,
     this.color = Colors.black,
     this.fontSize = 12,
+    this.overflow,
+    this.maxLines,
   });
   final String text;
   final Color color;
   final double fontSize;
+  final TextOverflow? overflow;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: overflow,
+      maxLines: maxLines,
       style: GoogleFonts.poppins(
         fontSize: fontSize.sp,
         fontWeight: FontWeight.w400,
